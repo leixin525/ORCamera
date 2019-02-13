@@ -285,7 +285,9 @@ public class CameraActivity extends AppCompatActivity {
     private View.OnClickListener closeButtonOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            setResult(Activity.RESULT_CANCELED);
+            Intent intent = new Intent();
+            intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH, outputFile);
+            setResult(Activity.RESULT_CANCELED, intent);
             finish();
         }
     };
@@ -306,6 +308,7 @@ public class CameraActivity extends AppCompatActivity {
 
                 Intent intent = new Intent();
                 intent.putExtra(CameraActivity.KEY_CONTENT_TYPE, contentType);
+                intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH, outputFile);
                 setResult(Activity.RESULT_OK, intent);
                 finish();
             }
